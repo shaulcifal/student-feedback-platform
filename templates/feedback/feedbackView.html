@@ -1,0 +1,42 @@
+{% extends 'personal/home.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h2 class="primary-head">All Feedbacks</h2>
+
+    <div class="student-feedbacks">
+
+        {% for course_name, feedbacks in course_feedbacks.items %}
+            <h3 class="faculty-feedback-course">{{course_name}}</h3>
+
+            {% for feedback in feedbacks %}
+
+
+                <div class="feedback-card">
+                    <div class="feedback-header">
+                        <div class="feedback-content">{{feedback.content}}</div>
+                        <div class="feedback-rating flex-center">{{feedback.course_rating}}</div>
+                    </div>
+                    <div class="feedback-footer">
+                        <div class="feedback-time">{{feedback.date_submitted}}</div>
+                        <div class="feedback-votes">
+                            <button class="btn upvote flex-center">
+                                <i class="fas fa-arrow-up"></i>
+                            </button>
+                            <div class="feedback-votes-result flex-center">
+                                {{feedback.votes}}
+                            </div>
+                            <button class="btn downvote flex-center">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
